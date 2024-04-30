@@ -18,15 +18,21 @@
 #define UPPER 3
 
 /* custom behaviours */
-// Only turn off it the key is held for 5 seconds or longer.
+// Only turn off it the key is held for 3 seconds or longer.
 &soft_off {
-    hold-time-ms = <5000>;
+    hold-time-ms = <3000>;
 };
 
 // tap: sticky shift | double tap: capswords
 ZMK_BEHAVIOR(ss_cw, tap_dance,
     tapping-term-ms = <200>;
     bindings = <&sk LSHFT>, <&caps_word>;
+)
+
+ZMK_BEHAVIOR(btlp, hold_tap,
+    tapping-term-ms = <3000>;
+    flavor = "tap-preferred";
+    bindings = <&bt>, <&none>;
 )
 
 // // combos
@@ -56,7 +62,7 @@ ZMK_LAYER(base,
 
 ZMK_LAYER(fn,
 //  ╭────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────╮
-       &soft_off    &kp PSCRN  &kp C_BRI_DN &kp C_BRI_UP     ___           ___         ___         &kp F10      &kp F11      &kp F12       ___       &bt BT_CLR
+       &soft_off    &kp PSCRN  &kp C_BRI_DN &kp C_BRI_UP     ___           ___         ___         &kp F10      &kp F11      &kp F12       ___      &btlp BT_CLR
 //  ├────────────┼────────────┼────────────┼────────────┼────────────┤────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┤
        &kp CAPS     &kp HOME     &kp END       &kp INS     &kp C_PP        ___         ___         &kp F7       &kp F8       &kp F9        ___       &bt BT_NXT
 //  ├────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┤
